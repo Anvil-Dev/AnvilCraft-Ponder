@@ -9,6 +9,7 @@ jei = "19.21.0.247"
 jade = "15.3.4+neoforge"
 patchouli = "1.21-87-NEOFORGE"
 modDevGradle = "2.0.78"
+ponder = "1.0.48"
 lombok = "8.7.1"
 
 [libraries]
@@ -21,6 +22,7 @@ jeiForgeApi = { group = "mezz.jei", name = "jei-1.21.1-neoforge-api", version.re
 jeiForgeImpl = { group = "mezz.jei", name = "jei-1.21.1-neoforge", version.ref = "jei" }
 jade = { group = "maven.modrinth", name = "jade", version.ref = "jade" }
 patchouli = { group = "vazkii.patchouli", name = "Patchouli", version.ref = "patchouli" }
+ponder = { group = "net.createmod.ponder", name = "Ponder-NeoForge-1.21.1", version.ref = "ponder" }
 
 [plugins]
 modDevGradle = { id = "net.neoforged.moddev", version.ref = "modDevGradle" }
