@@ -20,6 +20,6 @@ public class LangHandler {
         JeiLang.init(provider);
         EnchantmentDescriptionsLang.init(provider);
         CuriosLang.init(provider);
-        PonderLang.init(provider);
+        ToolPropertyLang.init(provider);
     }
 }
