@@ -14,6 +14,7 @@ import net.createmod.ponder.api.scene.Selection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
@@ -27,7 +28,7 @@ public class MagnetScene {
                 ModBlocks.FERRITE_CORE_MAGNET_BLOCK
             )
             .addStoryBoard(
-                "magnet/01",
+                "platform/555",
                 MagnetScene::crafting,
                 AnvilCraftPonderTags.MAGNET_BLOCK,
                 AnvilCraftPonderTags.ANVIL
@@ -40,11 +41,13 @@ public class MagnetScene {
 
         Selection basePlate = util.select().fromTo(0, 0, 0, 5, 0, 5);
         scene.world().showSection(basePlate, Direction.UP);
-
-        Selection cauldron = util.select().position(2,1,2);
+        // 创建锅
+        scene.world().setBlock(new BlockPos(2, 1, 2), Blocks.CAULDRON.defaultBlockState(), false);
+        Selection cauldron = util.select().position(2, 1, 2);
         scene.world().showSection(cauldron, Direction.NORTH);
-
-        Selection anvil = util.select().position(2,2,2);
+        // 创建铁砧
+        scene.world().setBlock(new BlockPos(2, 2, 2), Blocks.ANVIL.defaultBlockState(), false);
+        Selection anvil = util.select().position(2, 2, 2);
         ElementLink<WorldSectionElement> anvilLink = scene.world().showIndependentSection(anvil, Direction.NORTH);
         scene.idle(5);
 
@@ -54,8 +57,9 @@ public class MagnetScene {
             .attachKeyFrame()
             .placeNearTarget();
         scene.idle(40);
-
-        Selection magnet = util.select().position(2,4,2);
+        // 创建磁铁
+        scene.world().setBlock(new BlockPos(2, 4, 2), ModBlocks.MAGNET_BLOCK.getDefaultState(), false);
+        Selection magnet = util.select().position(2, 4, 2);
         scene.world().showIndependentSection(magnet, Direction.WEST);
         scene.idle(10);
 
@@ -69,7 +73,8 @@ public class MagnetScene {
             .placeNearTarget();
         scene.idle(40);
         // 放置红石块使磁铁失效
-        Selection redstoneBlock = util.select().position(3,4,2);
+        scene.world().setBlock(new BlockPos(3, 4, 2), Blocks.REDSTONE_BLOCK.defaultBlockState(), false);
+        Selection redstoneBlock = util.select().position(3, 4, 2);
         scene.world().showIndependentSection(redstoneBlock, Direction.WEST);
         scene.idle(10);
         scene.world().modifyBlock(new BlockPos(2, 4, 2),
