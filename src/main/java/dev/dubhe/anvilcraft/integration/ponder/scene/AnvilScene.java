@@ -15,12 +15,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.NotNull;
 
 public class AnvilScene {
-    public static void register(@NotNull PonderSceneRegistrationHelper<ResourceLocation> helper) {
-        PonderSceneRegistrationHelper<Item> HELPER = helper.withKeyFunction(BuiltInRegistries.ITEM::getKey);
-        HELPER.forComponents(
+    public static void register(PonderSceneRegistrationHelper<ResourceLocation> registrationHelper) {
+        PonderSceneRegistrationHelper<Item> helper = registrationHelper.withKeyFunction(BuiltInRegistries.ITEM::getKey);
+        helper.forComponents(
                 Items.ANVIL,
                 Items.CHIPPED_ANVIL,
                 Items.DAMAGED_ANVIL
@@ -32,7 +31,7 @@ public class AnvilScene {
             );
     }
 
-    private static void crafting(@NotNull SceneBuilder scene, @NotNull SceneBuildingUtil util) {
+    private static void crafting(SceneBuilder scene, SceneBuildingUtil util) {
         scene.title("anvil", "Use anvil to craft");
         scene.configureBasePlate(0, 0, 5);
 
