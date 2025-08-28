@@ -9,7 +9,7 @@ jei = "19.21.0.247"
 jade = "15.3.4+neoforge"
 patchouli = "1.21-87-NEOFORGE"
 modDevGradle = "2.0.78"
-ponder = "1.0.48"
+ponder = "1.0.56"
 lombok = "8.7.1"
 
 [libraries]
