@@ -73,8 +73,9 @@ public class CorruptedBeaconScene {
         builder.world().setBlock(beaconPos, ModBlocks.CORRUPTED_BEACON.getDefaultState(), false);
         builder.idle(10);
 
-        builder.overlay().showText(40)
-            .text("Beacons have a probability of being transformed.")
+        builder.overlay()
+            .showText(40)
+            .text("Beacons have a probability of being transformed")
             .pointAt(beaconPos.getCenter())
             .attachKeyFrame()
             .placeNearTarget();
@@ -100,8 +101,9 @@ public class CorruptedBeaconScene {
         builder.world().setBlock(beaconPos, ModBlocks.CORRUPTED_BEACON.getDefaultState(), false);
         builder.idle(10);
 
-        builder.overlay().showText(40)
-            .text("The bigger the base, the higher the probability.")
+        builder.overlay()
+            .showText(40)
+            .text("The bigger the base, the higher the probability")
             .pointAt(beaconPos.getCenter())
             .attachKeyFrame()
             .placeNearTarget();
@@ -146,8 +148,9 @@ public class CorruptedBeaconScene {
         });
         builder.idle(20);
 
-        builder.overlay().showText(30)
-            .text("Some mob can be transformed.")
+        builder.overlay()
+            .showText(30)
+            .text("Some mob can be transformed")
             .pointAt(beaconPos.getCenter())
             .attachKeyFrame()
             .placeNearTarget();
@@ -212,9 +215,10 @@ public class CorruptedBeaconScene {
         });
         builder.idle(10);
 
-        builder.overlay().showText(100)
+        builder.overlay()
+            .showText(100)
             .text(
-                "The more anvils you give to zombies, the greater the probability that they will be transformed into giants carrying giant anvils.")
+                "The more anvils you give to zombies, the greater the probability that they will be transformed into giants carrying giant anvils")
             .pointAt(beaconPos.getCenter())
             .attachKeyFrame()
             .placeNearTarget();
@@ -262,8 +266,9 @@ public class CorruptedBeaconScene {
         builder.world().riseSection(anvilLink);
         builder.idle(10);
 
-        builder.overlay().showText(40)
-            .text("Corrupted Beacons can execute time warp recipe.")
+        builder.overlay()
+            .showText(40)
+            .text("Corrupted Beacons can execute time warp recipe")
             .pointAt(beaconPos.getCenter())
             .attachKeyFrame()
             .placeNearTarget();
