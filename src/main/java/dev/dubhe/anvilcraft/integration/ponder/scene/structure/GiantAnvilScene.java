@@ -53,8 +53,9 @@ public class GiantAnvilScene {
         builder.configureBasePlate(0, 0, 33);
         // 摄像机缩放0.6f
         builder.scaleSceneView(0.6f);
+        // 下移一格
+        builder.setSceneOffsetY(-1);
         // 放置地板
-
         builder.showBasePlate();
         // 延时10gt
         builder.idle(10);
@@ -194,6 +195,8 @@ public class GiantAnvilScene {
         builder.configureBasePlate(0, 0, 33);
         // 摄像机缩放0.6f
         builder.scaleSceneView(0.6f);
+        // 下移一格
+        builder.setSceneOffsetY(-1);
         // 放置地板
         builder.showBasePlate();
         // 10gt延时
@@ -461,6 +464,8 @@ public class GiantAnvilScene {
         builder.scaleSceneView(0.6f);
         // 放置地板
         builder.showBasePlate();
+        // 下移一格
+        builder.setSceneOffsetY(-1);
         // 10gt延时
         builder.idle(10);
         // 放置重质铁块
