@@ -10,7 +10,7 @@ import dev.anvilcraft.ponder.scene.recipe.BulgingScene;
 import dev.anvilcraft.ponder.scene.recipe.CookingScene;
 import dev.anvilcraft.ponder.scene.recipe.CorruptedBeaconScene;
 import dev.anvilcraft.ponder.scene.recipe.HeaterScene;
-import dev.dubhe.anvilcraft.integration.ponder.scene.recipe.IronTrapdoorScene;
+import dev.anvilcraft.ponder.scene.recipe.IronTrapdoorScene;
 import dev.anvilcraft.ponder.scene.recipe.ItemCompressScene;
 import dev.anvilcraft.ponder.scene.recipe.ItemCrushScene;
 import dev.anvilcraft.ponder.scene.recipe.MeshScene;
