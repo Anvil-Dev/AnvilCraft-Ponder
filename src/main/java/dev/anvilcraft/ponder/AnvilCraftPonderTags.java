@@ -11,16 +11,16 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 
 public class AnvilCraftPonderTags {
-    public static final ResourceLocation ANVIL = AnvilCraft.of("anvil");
-    public static final ResourceLocation MAGNET_BLOCK = AnvilCraft.of("magnet_block");
+    public static final ResourceLocation ANVIL = AnvilCraftPonder.of("anvil");
+    public static final ResourceLocation MAGNET_BLOCK = AnvilCraftPonder.of("magnet_block");
 
-    public static final ResourceLocation REDSTONE_COMPONENTS = AnvilCraft.of("redstone_components");
+    public static final ResourceLocation REDSTONE_COMPONENTS = AnvilCraftPonder.of("redstone_components");
 
-    public static final ResourceLocation POWER_COMPONENTS = AnvilCraft.of("power_components");
+    public static final ResourceLocation POWER_COMPONENTS = AnvilCraftPonder.of("power_components");
 
-    public static final ResourceLocation LOGISTICS_COMPONENTS = AnvilCraft.of("logistics_components");
+    public static final ResourceLocation LOGISTICS_COMPONENTS = AnvilCraftPonder.of("logistics_components");
 
-    public static final ResourceLocation PROCESSING_COMPONENTS = AnvilCraft.of("processing_components");
+    public static final ResourceLocation PROCESSING_COMPONENTS = AnvilCraftPonder.of("processing_components");
 
     public static void register(PonderTagRegistrationHelper<ResourceLocation> helper) {
         PonderTagRegistrationHelper<RegistryEntry<?, ?>> registryTagHelper = helper.withKeyFunction(RegistryEntry::getId);
