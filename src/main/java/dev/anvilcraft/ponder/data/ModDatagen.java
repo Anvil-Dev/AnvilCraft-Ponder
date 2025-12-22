@@ -2,7 +2,7 @@ package dev.anvilcraft.ponder.data;
 
 import com.tterrag.registrate.providers.ProviderType;
 import dev.anvilcraft.ponder.AnvilCraftPonder;
-import dev.anvilcraft.ponder.data.lang.LangHandler;
+import dev.anvilcraft.ponder.data.lang.PonderLangHandler;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -18,6 +18,6 @@ public class ModDatagen {
      * 初始化生成器
      */
     public static void init() {
-        REGISTRATE.addDataGenerator(ProviderType.LANG, LangHandler::init);
+        REGISTRATE.addDataGenerator(ProviderType.LANG, PonderLangHandler::init);
     }
 }

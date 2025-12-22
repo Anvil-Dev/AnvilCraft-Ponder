@@ -1,4 +1,4 @@
-package dev.anvilcraft.ponder.data;
+package dev.anvilcraft.ponder.data.lang;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import dev.dubhe.anvilcraft.AnvilCraft;

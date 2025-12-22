@@ -1,4 +1,4 @@
-package dev.dubhe.anvilcraft.integration.ponder.scene.recipe;
+package dev.anvilcraft.ponder.scene.recipe;
 
 import dev.anvilcraft.ponder.AnvilCraftPonderTags;
 import dev.anvilcraft.ponder.api.AnvilCraftSceneBuilder;
