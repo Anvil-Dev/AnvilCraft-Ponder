@@ -1,7 +1,6 @@
 package dev.anvilcraft.ponder;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import dev.dubhe.anvilcraft.AnvilCraft;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -13,6 +12,8 @@ import net.minecraft.world.level.block.Blocks;
 public class AnvilCraftPonderTags {
     public static final ResourceLocation ANVIL = AnvilCraftPonder.of("anvil");
     public static final ResourceLocation MAGNET_BLOCK = AnvilCraftPonder.of("magnet_block");
+
+    public static final ResourceLocation GIANT_ANVIL = AnvilCraftPonder.of("giant_anvil");
 
     public static final ResourceLocation REDSTONE_COMPONENTS = AnvilCraftPonder.of("redstone_components");
 
