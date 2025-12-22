@@ -2,6 +2,7 @@ package dev.anvilcraft.ponder.scene.logistics;
 
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.dubhe.anvilcraft.block.entity.MagneticChuteBlockEntity;
 import dev.dubhe.anvilcraft.entity.SlidingBlockEntity;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
@@ -25,7 +26,7 @@ public class SlidingRailStopScene {
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> registrationHelper) {
         PonderSceneRegistrationHelper<ItemProviderEntry<?, ?>> helper = registrationHelper.withKeyFunction(RegistryEntry::getId);
         helper.forComponents(ModBlocks.SLIDING_RAIL_STOP)
-            .addStoryBoard("platform/9x", SlidingRailStopScene::slidingStop);
+            .addStoryBoard(AnvilCraftPonder.of("platform/9x"), SlidingRailStopScene::slidingStop);
     }
 
     private static void slidingStop(SceneBuilder scene, SceneBuildingUtil util) {

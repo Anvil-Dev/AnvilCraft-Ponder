@@ -1,6 +1,7 @@
 package dev.anvilcraft.ponder.scene.recipe;
 
 
+import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.dubhe.anvilcraft.block.HeaterBlock;
 import dev.dubhe.anvilcraft.block.TransmissionPoleBlock;
 import dev.dubhe.anvilcraft.block.state.Vertical3PartHalf;
@@ -30,7 +31,7 @@ public class HeaterScene {
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> registrationHelper) {
         PonderSceneRegistrationHelper<Item> helper = registrationHelper.withKeyFunction(BuiltInRegistries.ITEM::getKey);
         helper.forComponents(ModBlocks.HEATER.asItem())
-            .addStoryBoard("platform/5x", HeaterScene::crafting, AnvilCraftPonderTags.PROCESSING_COMPONENTS);
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), HeaterScene::crafting, AnvilCraftPonderTags.PROCESSING_COMPONENTS);
     }
 
     private static void crafting(SceneBuilder scene, SceneBuildingUtil util) {

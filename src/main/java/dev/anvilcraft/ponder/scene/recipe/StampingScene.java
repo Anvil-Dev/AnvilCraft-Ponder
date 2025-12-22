@@ -2,6 +2,7 @@ package dev.anvilcraft.ponder.scene.recipe;
 
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import dev.anvilcraft.ponder.AnvilCraftPonderTags;
 import dev.anvilcraft.ponder.api.AnvilCraftSceneBuilder;
@@ -21,7 +22,7 @@ public class StampingScene {
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> registrationHelper) {
         PonderSceneRegistrationHelper<ItemProviderEntry<?, ?>> helper = registrationHelper.withKeyFunction(RegistryEntry::getId);
         helper.forComponents(ModBlocks.STAMPING_PLATFORM)
-            .addStoryBoard("platform/5x", StampingScene::crafting, AnvilCraftPonderTags.PROCESSING_COMPONENTS);
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), StampingScene::crafting, AnvilCraftPonderTags.PROCESSING_COMPONENTS);
     }
 
     private static void crafting(SceneBuilder scene, SceneBuildingUtil util) {

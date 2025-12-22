@@ -2,6 +2,7 @@ package dev.anvilcraft.ponder.scene.logistics;
 
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.dubhe.anvilcraft.block.entity.MagneticChuteBlockEntity;
 import dev.dubhe.anvilcraft.block.sliding.PoweredSlidingRailBlock;
 import dev.dubhe.anvilcraft.entity.SlidingBlockEntity;
@@ -28,8 +29,8 @@ public class PoweredSlidingRailScene {
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> registrationHelper) {
         PonderSceneRegistrationHelper<ItemProviderEntry<?, ?>> helper = registrationHelper.withKeyFunction(RegistryEntry::getId);
         helper.forComponents(ModBlocks.POWERED_SLIDING_RAIL)
-            .addStoryBoard("platform/9x", PoweredSlidingRailScene::basicOperation)
-            .addStoryBoard("platform/9x", PoweredSlidingRailScene::withRailStop);
+            .addStoryBoard(AnvilCraftPonder.of("platform/9x"), PoweredSlidingRailScene::basicOperation)
+            .addStoryBoard(AnvilCraftPonder.of("platform/9x"), PoweredSlidingRailScene::withRailStop);
     }
 
     private static void basicOperation(SceneBuilder scene, SceneBuildingUtil util) {

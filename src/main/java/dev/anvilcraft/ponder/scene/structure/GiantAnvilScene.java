@@ -2,6 +2,7 @@ package dev.anvilcraft.ponder.scene.structure;
 
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.dubhe.anvilcraft.block.GiantAnvilBlock;
 import dev.dubhe.anvilcraft.block.state.Color;
 import dev.dubhe.anvilcraft.block.state.Cube3x3PartHalf;
@@ -34,13 +35,13 @@ public class GiantAnvilScene {
         // 对着这两个方块可以寻思撼地
         helper.forComponents(ModBlocks.GIANT_ANVIL, ModBlocks.HEAVY_IRON_BLOCK)
             // 注册场景：撼地
-            .addStoryBoard("platform/33x", GiantAnvilScene::shock, AnvilCraftPonderTags.GIANT_ANVIL)
+            .addStoryBoard(AnvilCraftPonder.of("platform/33x"), GiantAnvilScene::shock, AnvilCraftPonderTags.GIANT_ANVIL)
             // 注册场景：撼地的范围
-            .addStoryBoard("platform/33x", GiantAnvilScene::shockRange, AnvilCraftPonderTags.GIANT_ANVIL)
+            .addStoryBoard(AnvilCraftPonder.of("platform/33x"), GiantAnvilScene::shockRange, AnvilCraftPonderTags.GIANT_ANVIL)
             // 注册场景：撼地的模式
-            .addStoryBoard("platform/33x", GiantAnvilScene::shockMode, AnvilCraftPonderTags.GIANT_ANVIL)
+            .addStoryBoard(AnvilCraftPonder.of("platform/33x"), GiantAnvilScene::shockMode, AnvilCraftPonderTags.GIANT_ANVIL)
             // 注册场景：撼地的模式2
-            .addStoryBoard("platform/33x", GiantAnvilScene::shockMode2, AnvilCraftPonderTags.GIANT_ANVIL);
+            .addStoryBoard(AnvilCraftPonder.of("platform/33x"), GiantAnvilScene::shockMode2, AnvilCraftPonderTags.GIANT_ANVIL);
     }
 
     private static void shock(SceneBuilder scene, SceneBuildingUtil util) {

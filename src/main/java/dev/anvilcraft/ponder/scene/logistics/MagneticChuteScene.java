@@ -2,6 +2,7 @@ package dev.anvilcraft.ponder.scene.logistics;
 
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.dubhe.anvilcraft.block.ChuteBlock;
 import dev.dubhe.anvilcraft.block.MagneticChuteBlock;
 import dev.dubhe.anvilcraft.block.SimpleChuteBlock;
@@ -27,9 +28,9 @@ public class MagneticChuteScene {
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> registrationHelper) {
         PonderSceneRegistrationHelper<ItemProviderEntry<?, ?>> helper = registrationHelper.withKeyFunction(RegistryEntry::getId);
         helper.forComponents(ModBlocks.MAGNETIC_CHUTE)
-            .addStoryBoard("platform/5x", MagneticChuteScene::basicOperation)
-            .addStoryBoard("platform/5x", MagneticChuteScene::chuteConnections)
-            .addStoryBoard("platform/5x", MagneticChuteScene::filtering);
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), MagneticChuteScene::basicOperation)
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), MagneticChuteScene::chuteConnections)
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), MagneticChuteScene::filtering);
     }
 
     // 基本操作展示：对比普通溜槽和磁性溜槽，展示物品掉落方式的不同

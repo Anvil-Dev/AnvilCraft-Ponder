@@ -3,6 +3,7 @@ package dev.anvilcraft.ponder.scene.redstone;
 
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.dubhe.anvilcraft.block.BlockPlacerBlock;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import dev.anvilcraft.ponder.AnvilCraftPonderTags;
@@ -31,8 +32,8 @@ public class BlockPlacerScene {
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> registrationHelper) {
         PonderSceneRegistrationHelper<ItemProviderEntry<?, ?>> helper = registrationHelper.withKeyFunction(RegistryEntry::getId);
         helper.forComponents(ModBlocks.BLOCK_PLACER)
-            .addStoryBoard("platform/5x", BlockPlacerScene::run, AnvilCraftPonderTags.REDSTONE_COMPONENTS)
-            .addStoryBoard("platform/7x", BlockPlacerScene::anvilRun, AnvilCraftPonderTags.POWER_COMPONENTS);
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), BlockPlacerScene::run, AnvilCraftPonderTags.REDSTONE_COMPONENTS)
+            .addStoryBoard(AnvilCraftPonder.of("platform/7x"), BlockPlacerScene::anvilRun, AnvilCraftPonderTags.POWER_COMPONENTS);
     }
 
     private static void run(SceneBuilder scene, SceneBuildingUtil util) {

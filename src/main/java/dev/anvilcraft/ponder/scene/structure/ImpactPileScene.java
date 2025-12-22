@@ -1,6 +1,7 @@
 package dev.anvilcraft.ponder.scene.structure;
 
 
+import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import dev.anvilcraft.ponder.api.AnvilCraftSceneBuilder;
 import net.createmod.catnip.math.Pointing;
@@ -29,7 +30,7 @@ public class ImpactPileScene {
                 ModBlocks.IMPACT_PILE.asItem(),
                 ModBlocks.MINERAL_FOUNTAIN.asItem()
             )
-            .addStoryBoard("platform/5x", ImpactPileScene::impact);
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), ImpactPileScene::impact);
     }
 
     private static void impact(SceneBuilder scene, SceneBuildingUtil util) {

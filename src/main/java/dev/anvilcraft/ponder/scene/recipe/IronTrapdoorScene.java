@@ -1,5 +1,6 @@
 package dev.anvilcraft.ponder.scene.recipe;
 
+import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.anvilcraft.ponder.AnvilCraftPonderTags;
 import dev.anvilcraft.ponder.api.AnvilCraftSceneBuilder;
 import net.createmod.ponder.api.element.ElementLink;
@@ -26,7 +27,7 @@ public class IronTrapdoorScene {
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> registrationHelper) {
         PonderSceneRegistrationHelper<Item> helper = registrationHelper.withKeyFunction(BuiltInRegistries.ITEM::getKey);
         helper.forComponents(IRON_TRAPDOOR)
-            .addStoryBoard("platform/5x", IronTrapdoorScene::crafting, AnvilCraftPonderTags.PROCESSING_COMPONENTS);
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), IronTrapdoorScene::crafting, AnvilCraftPonderTags.PROCESSING_COMPONENTS);
     }
 
     private static void crafting(SceneBuilder scene, SceneBuildingUtil util) {

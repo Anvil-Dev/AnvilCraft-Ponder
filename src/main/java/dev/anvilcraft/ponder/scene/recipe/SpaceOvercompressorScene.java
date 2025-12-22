@@ -2,6 +2,7 @@ package dev.anvilcraft.ponder.scene.recipe;
 
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import dev.dubhe.anvilcraft.init.item.ModItems;
 import dev.anvilcraft.ponder.AnvilCraftPonderTags;
@@ -24,7 +25,7 @@ public class SpaceOvercompressorScene {
         helper.forComponents(
                 ModBlocks.SPACE_OVERCOMPRESSOR
             )
-            .addStoryBoard("platform/5x", SpaceOvercompressorScene::crafting, AnvilCraftPonderTags.PROCESSING_COMPONENTS);
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), SpaceOvercompressorScene::crafting, AnvilCraftPonderTags.PROCESSING_COMPONENTS);
     }
 
     private static void crafting(SceneBuilder scene, SceneBuildingUtil util) {

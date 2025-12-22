@@ -2,6 +2,7 @@ package dev.anvilcraft.ponder.scene.logistics;
 
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.dubhe.anvilcraft.block.ChuteBlock;
 import dev.dubhe.anvilcraft.block.SimpleChuteBlock;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
@@ -28,9 +29,9 @@ public class ChuteScene {
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> registrationHelper) {
         PonderSceneRegistrationHelper<ItemProviderEntry<?, ?>> helper = registrationHelper.withKeyFunction(RegistryEntry::getId);
         helper.forComponents(ModBlocks.CHUTE)
-            .addStoryBoard("platform/5x", ChuteScene::basicOperation)
-            .addStoryBoard("platform/5x", ChuteScene::simpleChute)
-            .addStoryBoard("platform/5x", ChuteScene::filtering);
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), ChuteScene::basicOperation)
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), ChuteScene::simpleChute)
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), ChuteScene::filtering);
     }
 
     // 基本操作展示：对比漏斗和溜槽，演示物品阻塞

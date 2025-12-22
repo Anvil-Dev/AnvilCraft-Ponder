@@ -1,5 +1,6 @@
 package dev.anvilcraft.ponder.scene.recipe;
 
+import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.anvilcraft.ponder.AnvilCraftPonderTags;
 import dev.anvilcraft.ponder.api.AnvilCraftSceneBuilder;
 import net.createmod.ponder.api.element.ElementLink;
@@ -22,7 +23,7 @@ public class MeshScene {
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> registrationHelper) {
         PonderSceneRegistrationHelper<Item> helper = registrationHelper.withKeyFunction(BuiltInRegistries.ITEM::getKey);
         helper.forComponents(Items.SCAFFOLDING)
-            .addStoryBoard("platform/5x", MeshScene::crafting, AnvilCraftPonderTags.PROCESSING_COMPONENTS);
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), MeshScene::crafting, AnvilCraftPonderTags.PROCESSING_COMPONENTS);
     }
 
     private static void crafting(SceneBuilder scene, SceneBuildingUtil util) {

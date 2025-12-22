@@ -2,6 +2,7 @@ package dev.anvilcraft.ponder.scene.redstone;
 
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.dubhe.anvilcraft.block.MagnetBlock;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import dev.anvilcraft.ponder.AnvilCraftPonderTags;
@@ -32,10 +33,10 @@ public class MagnetScene {
                 ModBlocks.HOLLOW_MAGNET_BLOCK,
                 ModBlocks.FERRITE_CORE_MAGNET_BLOCK
             )
-            .addStoryBoard("platform/5x", MagnetScene::thunder, AnvilCraftPonderTags.MAGNET_BLOCK)
-            .addStoryBoard("platform/5x", MagnetScene::magnetizeIngot, AnvilCraftPonderTags.MAGNET_BLOCK)
-            .addStoryBoard("platform/5x", MagnetScene::attractAnvil, AnvilCraftPonderTags.MAGNET_BLOCK, AnvilCraftPonderTags.ANVIL)
-            .addStoryBoard("platform/5x", MagnetScene::rubCopperBlock, AnvilCraftPonderTags.MAGNET_BLOCK);
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), MagnetScene::thunder, AnvilCraftPonderTags.MAGNET_BLOCK)
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), MagnetScene::magnetizeIngot, AnvilCraftPonderTags.MAGNET_BLOCK)
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), MagnetScene::attractAnvil, AnvilCraftPonderTags.MAGNET_BLOCK, AnvilCraftPonderTags.ANVIL)
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), MagnetScene::rubCopperBlock, AnvilCraftPonderTags.MAGNET_BLOCK);
     }
 
     private static void thunder(SceneBuilder scene, SceneBuildingUtil util) {

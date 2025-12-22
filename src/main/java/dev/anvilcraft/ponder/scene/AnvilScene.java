@@ -1,5 +1,6 @@
 package dev.anvilcraft.ponder.scene;
 
+import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.anvilcraft.ponder.AnvilCraftPonderTags;
 import dev.anvilcraft.ponder.api.AnvilCraftSceneBuilder;
 import dev.anvilcraft.ponder.api.instruction.Interpolation;
@@ -26,7 +27,7 @@ public class AnvilScene {
                 Items.CHIPPED_ANVIL,
                 Items.DAMAGED_ANVIL
             )
-            .addStoryBoard("platform/5x", AnvilScene::crafting, AnvilCraftPonderTags.ANVIL);
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), AnvilScene::crafting, AnvilCraftPonderTags.ANVIL);
     }
 
     private static void crafting(SceneBuilder scene, SceneBuildingUtil util) {

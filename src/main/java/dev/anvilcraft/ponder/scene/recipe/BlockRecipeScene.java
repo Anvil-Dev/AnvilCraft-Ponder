@@ -1,5 +1,6 @@
 package dev.anvilcraft.ponder.scene.recipe;
 
+import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import dev.anvilcraft.ponder.api.AnvilCraftSceneBuilder;
 import dev.dubhe.anvilcraft.util.CauldronUtil;
@@ -36,8 +37,8 @@ public class BlockRecipeScene {
                 Items.CHIPPED_ANVIL,
                 Items.DAMAGED_ANVIL
             )
-            .addStoryBoard("platform/5x", BlockRecipeScene::crafting)
-            .addStoryBoard("platform/5x", BlockRecipeScene::processing);
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), BlockRecipeScene::crafting)
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), BlockRecipeScene::processing);
     }
 
     private static void crafting(SceneBuilder scene, SceneBuildingUtil util) {

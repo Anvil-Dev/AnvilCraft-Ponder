@@ -2,6 +2,7 @@ package dev.anvilcraft.ponder.scene.recipe;
 
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.dubhe.anvilcraft.block.CorruptedBeaconBlock;
 import dev.dubhe.anvilcraft.block.OilCauldronBlock;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
@@ -34,14 +35,14 @@ public class CorruptedBeaconScene {
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> registrationHelper) {
         PonderSceneRegistrationHelper<ItemProviderEntry<?, ?>> helper = registrationHelper.withKeyFunction(RegistryEntry::getId);
         helper.forComponents(ModBlocks.CORRUPTED_BEACON)
-            .addStoryBoard("platform/9x", CorruptedBeaconScene::get, AnvilCraftPonderTags.PROCESSING_COMPONENTS)
-            .addStoryBoard("platform/5x", CorruptedBeaconScene::mobTransform, AnvilCraftPonderTags.PROCESSING_COMPONENTS);
+            .addStoryBoard(AnvilCraftPonder.of("platform/9x"), CorruptedBeaconScene::get, AnvilCraftPonderTags.PROCESSING_COMPONENTS)
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), CorruptedBeaconScene::mobTransform, AnvilCraftPonderTags.PROCESSING_COMPONENTS);
 
         helper.forComponents(ModBlocks.CORRUPTED_BEACON, ModBlocks.GIANT_ANVIL)
-            .addStoryBoard("platform/5x", CorruptedBeaconScene::giantAnvil, AnvilCraftPonderTags.PROCESSING_COMPONENTS);
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), CorruptedBeaconScene::giantAnvil, AnvilCraftPonderTags.PROCESSING_COMPONENTS);
 
         helper.forComponents(ModBlocks.CORRUPTED_BEACON)
-            .addStoryBoard("platform/5x", CorruptedBeaconScene::timeWarp, AnvilCraftPonderTags.PROCESSING_COMPONENTS);
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), CorruptedBeaconScene::timeWarp, AnvilCraftPonderTags.PROCESSING_COMPONENTS);
     }
 
     private static void get(SceneBuilder scene, SceneBuildingUtil util) {

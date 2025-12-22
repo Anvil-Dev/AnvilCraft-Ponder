@@ -2,6 +2,7 @@ package dev.anvilcraft.ponder.scene.redstone;
 
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.dubhe.anvilcraft.block.BlockComparatorBlock;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import dev.anvilcraft.ponder.AnvilCraftPonderTags;
@@ -20,7 +21,7 @@ public class BlockComparatorScene {
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> registrationHelper) {
         PonderSceneRegistrationHelper<ItemProviderEntry<?, ?>> helper = registrationHelper.withKeyFunction(RegistryEntry::getId);
         helper.forComponents(ModBlocks.BLOCK_COMPARATOR)
-            .addStoryBoard("platform/5x", BlockComparatorScene::run, AnvilCraftPonderTags.REDSTONE_COMPONENTS);
+            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), BlockComparatorScene::run, AnvilCraftPonderTags.REDSTONE_COMPONENTS);
     }
 
     public static void run(SceneBuilder scene, SceneBuildingUtil util) {
