@@ -5,13 +5,16 @@ registrate = "MC1.21-1.3.0+62"
 anvillib = "1.4.0+build.172"
 anvilcraft = "1.5.0+hotfix.1560"
 modDevGradle = "2.0.78"
-ponder = "1.0.56"
+flywheel = "1.0.6-beta-38"
+ponder = "1.0.69"
 lombok = "8.7.1"
 
 [libraries]
 registrate = { group = "com.tterrag.registrate", name = "Registrate", version.ref = "registrate" }
 anvillib = { group = "dev.anvilcraft.lib", name = "anvillib-neoforge-1.21.1", version.ref = "anvillib" }
 anvilcraft = { group = "dev.dubhe", name = "anvilcraft-neoforge-1.21.1", version.ref = "anvilcraft" }
+flywheelApi = { group = "dev.engine-room.flywheel", name = "flywheel-neoforge-api-1.21.1", version.ref = "flywheel" }
+flywheel = { group = "dev.engine-room.flywheel", name = "flywheel-neoforge-1.21.1", version.ref = "flywheel" }
 ponder = { group = "net.createmod.ponder", name = "Ponder-NeoForge-1.21.1", version.ref = "ponder" }
 
 [plugins]

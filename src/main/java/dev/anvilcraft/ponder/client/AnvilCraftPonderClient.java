@@ -4,7 +4,10 @@ import com.tterrag.registrate.providers.ProviderType;
 import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.anvilcraft.ponder.AnvilCraftPonderScenes;
 import dev.anvilcraft.ponder.AnvilCraftPonderTags;
+import dev.anvilcraft.ponder.client.screen.AddonPonderIndexScreen;
 import dev.anvilcraft.ponder.data.lang.PonderLangHandler;
+import net.createmod.catnip.gui.ScreenOpener;
+import net.createmod.catnip.net.packets.ClientboundSimpleActionPacket;
 import net.createmod.ponder.api.registration.PonderPlugin;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
@@ -22,6 +25,10 @@ public class AnvilCraftPonderClient implements PonderPlugin {
     public AnvilCraftPonderClient(IEventBus modBus, ModContainer container) {
         PonderIndex.addPlugin(this);
         REGISTRATE.addDataGenerator(ProviderType.LANG, PonderLangHandler::init);
+        ClientboundSimpleActionPacket.addAction(
+            "openAnvilCraftPonder",
+            () -> (value) -> ScreenOpener.transitionTo(new AddonPonderIndexScreen())
+        );
     }
 
     /**

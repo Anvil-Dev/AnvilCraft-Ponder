@@ -21,6 +21,7 @@ repositories {
         url = "https://maven.createmod.net"
         content {
             includeGroup "net.createmod.ponder"
+            includeGroup "dev.engine-room.flywheel"
         }
     }
 }

@@ -3,7 +3,9 @@ package dev.anvilcraft.ponder;
 import dev.anvilcraft.ponder.scene.AnvilScene;
 import dev.anvilcraft.ponder.scene.logistics.ChuteScene;
 import dev.anvilcraft.ponder.scene.logistics.MagneticChuteScene;
+import dev.anvilcraft.ponder.scene.logistics.PoweredSlidingRailScene;
 import dev.anvilcraft.ponder.scene.logistics.SlidingRailScene;
+import dev.anvilcraft.ponder.scene.logistics.SlidingRailStopScene;
 import dev.anvilcraft.ponder.scene.power.TransmissionPoleScene;
 import dev.anvilcraft.ponder.scene.recipe.BlockRecipeScene;
 import dev.anvilcraft.ponder.scene.recipe.BulgingScene;
@@ -20,6 +22,7 @@ import dev.anvilcraft.ponder.scene.redstone.BlockComparatorScene;
 import dev.anvilcraft.ponder.scene.redstone.BlockDevourerScene;
 import dev.anvilcraft.ponder.scene.redstone.BlockPlacerScene;
 import dev.anvilcraft.ponder.scene.redstone.MagnetScene;
+import dev.anvilcraft.ponder.scene.structure.GiantAnvilScene;
 import dev.anvilcraft.ponder.scene.structure.ImpactPileScene;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.minecraft.resources.ResourceLocation;
@@ -49,9 +52,12 @@ public class AnvilCraftPonderScenes {
         BlockDevourerScene.register(helper);
         // structure
         ImpactPileScene.register(helper);
+        GiantAnvilScene.register(helper);
         // logistics
         ChuteScene.register(helper);
         MagneticChuteScene.register(helper);
         SlidingRailScene.register(helper);
+        SlidingRailStopScene.register(helper);
+        PoweredSlidingRailScene.register(helper);
     }
 }
