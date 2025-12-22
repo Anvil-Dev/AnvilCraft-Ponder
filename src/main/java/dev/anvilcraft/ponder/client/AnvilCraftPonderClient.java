@@ -14,13 +14,12 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import org.jetbrains.annotations.NotNull;
 
-import static dev.dubhe.anvilcraft.AnvilCraft.REGISTRATE;
+import static dev.anvilcraft.ponder.AnvilCraftPonder.REGISTRATE;
 
 @Mod(value = AnvilCraftPonder.MOD_ID, dist = Dist.CLIENT)
 public class AnvilCraftPonderClient implements PonderPlugin {
-    public AnvilCraftPonderClient(@NotNull IEventBus modBus, @NotNull ModContainer container) {
+    public AnvilCraftPonderClient(IEventBus modBus, ModContainer container) {
         PonderIndex.addPlugin(this);
         REGISTRATE.addDataGenerator(ProviderType.LANG, PonderLangHandler::init);
     }

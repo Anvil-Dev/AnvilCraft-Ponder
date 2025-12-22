@@ -1,12 +1,11 @@
 package dev.anvilcraft.ponder.data.lang;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import dev.dubhe.anvilcraft.AnvilCraft;
+import dev.anvilcraft.ponder.AnvilCraftPonder;
 import net.createmod.ponder.foundation.PonderIndex;
-import org.jetbrains.annotations.NotNull;
 
 public class PonderLangHandler {
-    public static void init(@NotNull RegistrateLangProvider provider) {
-        PonderIndex.getLangAccess().provideLang(AnvilCraft.MOD_ID, provider::add);
+    public static void init(RegistrateLangProvider provider) {
+        PonderIndex.getLangAccess().provideLang(AnvilCraftPonder.MOD_ID, provider::add);
     }
 }
