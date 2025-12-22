@@ -11,7 +11,7 @@ jobs:
     env:
       CI_BUILD: false
       PR_BUILD: false
-      VERSION_TYPE: ${{ github.event.release.prerelease && 'alpha' || 'release' }}
+      VERSION_TYPE: release
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -85,6 +85,10 @@ jobs:
 
           curseforge-id: ${{ steps.properties.outputs.curseforge_id }}
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+
+          dependencies: |
+            create@mc1.21.1-6.0.8(required){modrinth:LNytGWDc}{curseforge:328085}
+            anvilcraft@1.21.1-1.5.0(required){modrinth:vuISAWPc}{curseforge:986251}
 
           files: |
             build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
