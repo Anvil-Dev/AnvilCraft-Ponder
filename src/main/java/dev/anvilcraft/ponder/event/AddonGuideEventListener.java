@@ -1,9 +1,11 @@
 package dev.anvilcraft.ponder.event;
 
 import dev.anvilcraft.ponder.AnvilCraftPonder;
+import dev.dubhe.anvilcraft.api.event.CheckIntegrationLoadedEvent;
 import dev.dubhe.anvilcraft.api.event.GuideBookEvent;
 import net.createmod.catnip.net.packets.ClientboundSimpleActionPacket;
 import net.createmod.catnip.platform.CatnipServices;
+import net.createmod.ponder.Ponder;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.game.ClientboundSoundPacket;
@@ -20,6 +22,13 @@ public class AddonGuideEventListener {
     @SubscribeEvent
     public static void onHasGuide(GuideBookEvent.HasGuideBookEvent event) {
         event.hasGuideBook();
+    }
+
+    @SubscribeEvent
+    public static void onHasGuide(CheckIntegrationLoadedEvent event) {
+        if (event.getId().equals(Ponder.MOD_ID)) {
+            event.setLoaded();
+        }
     }
 
     @SubscribeEvent
