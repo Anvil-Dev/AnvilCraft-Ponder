@@ -14,6 +14,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 
@@ -31,7 +32,7 @@ public class AddonGuideEventListener {
         }
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onOpenGuide(GuideBookEvent.OpenGuideBookEvent event) {
         ServerPlayer player = event.getPlayer();
         Holder<SoundEvent> holder = BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.BOOK_PAGE_TURN);
@@ -50,5 +51,6 @@ public class AddonGuideEventListener {
             player,
             new ClientboundSimpleActionPacket("openAnvilCraftPonder", AnvilCraftPonder.MOD_ID + "index")
         );
+        event.setCanceled(true);
     }
 }
