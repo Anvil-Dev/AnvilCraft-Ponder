@@ -28,7 +28,7 @@ jobs:
         uses: christian-draeger/read-properties@1.1.1
         with:
           path: gradle.properties
-          properties: 'mod_id mod_name java_version'
+          properties: 'mod_id mod_name java_version neo_version'
 
       - name: Setup Java ${{ steps.properties.outputs.java_version }}
         uses: actions/setup-java@v3.6.0
@@ -58,10 +58,14 @@ jobs:
           name: "${{ steps.properties.outputs.mod_name }} ${{ steps.version.outputs.version }}"
           path: build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
 
-      - name: gametest
-        uses: Anvil-Dev/dedicated-server-launch-test@1.21.1-neoforge
+      - name: Gametest
+        uses: Anvil-Dev/dedicated-server-launch-test@universal
         with:
-          mod: build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
+          minecraft_version: 1.21.1
+          mod_loader: neoforge
+          loader_version: ${{ steps.properties.outputs.neo_version }}
+          mods: build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
           extra-mods: |
             anvilcraft:1.21.1-1.6.0+snapshot.2127
             create:6.0.10+mc1.21.1
+          quiet-setup: True
