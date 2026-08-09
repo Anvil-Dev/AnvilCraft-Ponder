@@ -218,7 +218,7 @@ public class BlockRecipeScene {
         builder.world().falldownSection(anvilLink);
         builder.world().replaceBlocks(upSelection, Blocks.AIR.defaultBlockState(), true);
         builder.world().hideSection(upSelection, Direction.NORTH);
-        resultLink = builder.world().createItemEntity(upPos.getCenter(), Vec3.ZERO, Items.IRON_INGOT.getDefaultInstance().copyWithCount(3));
+        resultLink = builder.world().createItemEntity(upPos.getCenter(), Vec3.ZERO, Items.RAW_IRON.getDefaultInstance().copyWithCount(3));
         builder.world().riseSection(anvilLink);
         builder.idle(10);
 
