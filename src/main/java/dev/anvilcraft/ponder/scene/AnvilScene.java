@@ -3,7 +3,6 @@ package dev.anvilcraft.ponder.scene;
 import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.anvilcraft.ponder.AnvilCraftPonderTags;
 import dev.anvilcraft.ponder.api.AnvilCraftSceneBuilder;
-import dev.anvilcraft.ponder.api.instruction.Interpolation;
 import net.createmod.ponder.api.element.ElementLink;
 import net.createmod.ponder.api.element.WorldSectionElement;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
@@ -17,17 +16,15 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.phys.Vec3;
 
 public class AnvilScene {
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> registrationHelper) {
         PonderSceneRegistrationHelper<Item> helper = registrationHelper.withKeyFunction(BuiltInRegistries.ITEM::getKey);
         helper.forComponents(
-                Items.ANVIL,
-                Items.CHIPPED_ANVIL,
-                Items.DAMAGED_ANVIL
-            )
-            .addStoryBoard(AnvilCraftPonder.of("platform/5x"), AnvilScene::crafting, AnvilCraftPonderTags.ANVIL);
+            Items.ANVIL,
+            Items.CHIPPED_ANVIL,
+            Items.DAMAGED_ANVIL
+        ).addStoryBoard(AnvilCraftPonder.of("platform/5x"), AnvilScene::crafting, AnvilCraftPonderTags.ANVIL);
     }
 
     private static void crafting(SceneBuilder scene, SceneBuildingUtil util) {
@@ -54,8 +51,8 @@ public class AnvilScene {
 
         builder.idle(40);
 
-        builder.world().moveSectionInterpolation(anvilLink, new Vec3(0, 2, 0), Interpolation.acceleration(0.025));
-        builder.world().moveSectionInterpolation(anvilLink, new Vec3(0, -2, 0), Interpolation.acceleration(0.025));
+        builder.world().riseSection(anvilLink, 2);
+        builder.world().falldownSection(anvilLink, 2);
 
         builder.overlay()
             .showText(30)

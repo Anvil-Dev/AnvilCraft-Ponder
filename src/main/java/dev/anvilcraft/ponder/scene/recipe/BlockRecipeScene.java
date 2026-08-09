@@ -1,8 +1,8 @@
 package dev.anvilcraft.ponder.scene.recipe;
 
 import dev.anvilcraft.ponder.AnvilCraftPonder;
-import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import dev.anvilcraft.ponder.api.AnvilCraftSceneBuilder;
+import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import dev.dubhe.anvilcraft.util.CauldronUtil;
 import net.createmod.ponder.api.element.ElementLink;
 import net.createmod.ponder.api.element.EntityElement;
@@ -16,6 +16,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -50,25 +51,27 @@ public class BlockRecipeScene {
         BlockPos anvilPos = util.grid().at(2, 3, 2);
         BlockPos downPos = util.grid().at(2, 1, 2);
         BlockPos upPos = util.grid().at(2, 2, 2);
-        ElementLink<EntityElement> itemLink;
-        builder.world().showSection(util.select().position(upPos), Direction.NORTH);
+        ElementLink<EntityElement> resultLink;
 
         // 方块粉碎
         builder.world().setBlock(anvilPos, Blocks.ANVIL.defaultBlockState(), false);
-        ElementLink<WorldSectionElement> anvilLink = builder.world()
-            .showIndependentSection(util.select().position(anvilPos), Direction.DOWN);
+        ElementLink<WorldSectionElement> anvilLink = builder.world().showIndependentSection(
+            util.select().position(anvilPos),
+            Direction.DOWN
+        );
 
         builder.world().setBlock(downPos, Blocks.COBBLESTONE.defaultBlockState(), false);
-        builder.world().showSection(util.select().position(downPos), Direction.NORTH);
+        Selection downSelection = util.select().position(downPos);
+        builder.world().showSection(downSelection, Direction.NORTH);
         builder.idle(20);
 
         builder.world().falldownSection(anvilLink);
-        builder.world().setBlock(downPos, Blocks.GRAVEL.defaultBlockState(), true);
+        builder.world().replaceBlocks(downSelection, Blocks.GRAVEL.defaultBlockState(), true);
         builder.world().riseSection(anvilLink);
         builder.idle(10);
 
         builder.world().falldownSection(anvilLink);
-        builder.world().setBlock(downPos, Blocks.SAND.defaultBlockState(), true);
+        builder.world().replaceBlocks(downSelection, Blocks.SAND.defaultBlockState(), true);
         builder.world().riseSection(anvilLink);
         builder.idle(10);
 
@@ -79,18 +82,20 @@ public class BlockRecipeScene {
             .attachKeyFrame()
             .placeNearTarget();
         builder.idle(60);
+
         // 复位
-        builder.world().setBlock(downPos, Blocks.AIR.defaultBlockState(), false);
-        builder.idle(10);
+        builder.world().hideSection(downSelection, Direction.NORTH);
+        builder.idle(20);
 
         // 物品压入方块
-        builder.world().setBlock(downPos, Blocks.BLACKSTONE.defaultBlockState(), false);
-        itemLink = builder.world().createItemEntity(upPos.getCenter(), Vec3.ZERO, Items.GOLD_INGOT.getDefaultInstance());
+        builder.world().replaceBlocks(downSelection, Blocks.BLACKSTONE.defaultBlockState(), false);
+        builder.world().showSection(downSelection, Direction.NORTH);
+        resultLink = builder.world().createItemEntity(upPos.getCenter(), Vec3.ZERO, Items.GOLD_INGOT.getDefaultInstance());
         builder.idle(20);
 
         builder.world().falldownSection(anvilLink);
-        builder.world().setBlock(downPos, Blocks.GILDED_BLACKSTONE.defaultBlockState(), true);
-        builder.world().removeEntity(itemLink);
+        builder.world().replaceBlocks(downSelection, Blocks.GILDED_BLACKSTONE.defaultBlockState(), true);
+        builder.world().removeEntity(resultLink);
         builder.world().riseSection(anvilLink);
         builder.idle(10);
 
@@ -101,19 +106,24 @@ public class BlockRecipeScene {
             .attachKeyFrame()
             .placeNearTarget();
         builder.idle(70);
+
         // 复位
-        builder.world().setBlock(downPos, Blocks.AIR.defaultBlockState(), false);
-        builder.idle(10);
+        builder.world().hideSection(downSelection, Direction.NORTH);
+        builder.idle(20);
 
         // 方块破坏
-        builder.world().setBlock(downPos, Blocks.STONECUTTER.defaultBlockState(), false);
+        builder.world().replaceBlocks(downSelection, Blocks.STONECUTTER.defaultBlockState(), false);
+        builder.world().showSection(downSelection, Direction.NORTH);
         builder.world().setBlock(upPos, Blocks.STONE.defaultBlockState(), false);
+        Selection upSelection = util.select().position(upPos);
+        builder.world().showSection(upSelection, Direction.NORTH);
         builder.world().riseSection(anvilLink);
         builder.idle(10);
 
         builder.world().falldownSection(anvilLink);
-        builder.world().setBlock(upPos, Blocks.AIR.defaultBlockState(), true);
-        itemLink = builder.world().createItemEntity(upPos.getCenter(), Vec3.ZERO, Items.COBBLESTONE.getDefaultInstance());
+        builder.world().replaceBlocks(upSelection, Blocks.AIR.defaultBlockState(), true);
+        builder.world().hideSection(upSelection, Direction.NORTH);
+        resultLink = builder.world().createItemEntity(upPos.getCenter(), Vec3.ZERO, Items.COBBLESTONE.getDefaultInstance());
         builder.world().riseSection(anvilLink);
         builder.idle(10);
 
@@ -125,60 +135,119 @@ public class BlockRecipeScene {
             .placeNearTarget();
         builder.idle(70);
 
-        builder.world().removeEntity(itemLink);
+        builder.world().removeEntity(resultLink);
         // 皇家铁砧: 精准采集
         builder.world().setBlock(anvilPos, ModBlocks.ROYAL_ANVIL.getDefaultState(), false);
         builder.world().setBlock(upPos, Blocks.STONE.defaultBlockState(), false);
+        builder.world().showSection(upSelection, Direction.NORTH);
         builder.idle(10);
 
         builder.world().falldownSection(anvilLink);
-        builder.world().setBlock(upPos, Blocks.AIR.defaultBlockState(), true);
-        itemLink = builder.world().createItemEntity(upPos.getCenter(), Vec3.ZERO, Items.STONE.getDefaultInstance());
+        builder.world().replaceBlocks(upSelection, Blocks.AIR.defaultBlockState(), true);
+        builder.world().hideSection(upSelection, Direction.NORTH);
+        resultLink = builder.world().createItemEntity(upPos.getCenter(), Vec3.ZERO, Items.STONE.getDefaultInstance());
         builder.world().riseSection(anvilLink);
         builder.idle(10);
 
         builder.overlay()
             .showText(40)
-            .text("The Royal Anvil can precisely destroy blocks")
+            .text("Royal Anvils can precisely destroy blocks")
             .pointAt(upPos.getCenter())
             .attachKeyFrame()
             .placeNearTarget();
         builder.idle(50);
 
-        builder.world().removeEntity(itemLink);
+        builder.world().removeEntity(resultLink);
+        // 浮霜铁砧: 崩解
+        builder.world().setBlock(anvilPos, ModBlocks.FROST_ANVIL.getDefaultState(), false);
+        builder.world().setBlock(upPos, Blocks.STONE.defaultBlockState(), false);
+        builder.world().showSection(upSelection, Direction.NORTH);
+        builder.idle(10);
+
+        builder.world().falldownSection(anvilLink);
+        builder.world().replaceBlocks(upSelection, Blocks.AIR.defaultBlockState(), true);
+        builder.world().hideSection(upSelection, Direction.NORTH);
+        resultLink = builder.world().createEntity(world -> {
+            ExperienceOrb orb = EntityType.EXPERIENCE_ORB.create(world);
+            if (orb != null) {
+                orb.moveTo(upPos.getCenter());
+                orb.value = world.random.nextInt(1, 3);
+            }
+            return orb;
+        });
+        builder.world().riseSection(anvilLink);
+        builder.idle(10);
+
+        builder.overlay()
+            .showText(40)
+            .text("Frost Anvils can turn the drops of blocks into experience orbs")
+            .pointAt(upPos.getCenter())
+            .attachKeyFrame()
+            .placeNearTarget();
+        builder.idle(50);
+
+        builder.world().removeEntity(resultLink);
         // 余烬铁砧：熔炼
         builder.world().setBlock(anvilPos, ModBlocks.EMBER_ANVIL.getDefaultState(), false);
         builder.world().setBlock(upPos, Blocks.IRON_ORE.defaultBlockState(), false);
+        builder.world().showSection(upSelection, Direction.NORTH);
         builder.idle(10);
 
         builder.world().falldownSection(anvilLink);
-        builder.world().setBlock(upPos, Blocks.AIR.defaultBlockState(), true);
-        itemLink = builder.world().createItemEntity(upPos.getCenter(), Vec3.ZERO, Items.IRON_INGOT.getDefaultInstance());
+        builder.world().replaceBlocks(upSelection, Blocks.AIR.defaultBlockState(), true);
+        builder.world().hideSection(upSelection, Direction.NORTH);
+        resultLink = builder.world().createItemEntity(upPos.getCenter(), Vec3.ZERO, Items.IRON_INGOT.getDefaultInstance());
         builder.world().riseSection(anvilLink);
         builder.idle(10);
 
         builder.overlay()
             .showText(40)
-            .text("The Ember Anvil can melt blocks")
+            .text("Ember Anvils can melt the drops of blocks")
             .pointAt(upPos.getCenter())
             .attachKeyFrame()
             .placeNearTarget();
         builder.idle(50);
 
-        builder.world().removeEntity(itemLink);
-        // 复位
-        builder.world().setBlock(downPos, Blocks.AIR.defaultBlockState(), false);
-        builder.world().setBlock(anvilPos, Blocks.ANVIL.defaultBlockState(), false);
+        builder.world().removeEntity(resultLink);
+        // 超限铁砧：时运
+        builder.world().setBlock(anvilPos, ModBlocks.TRANSCENDENCE_ANVIL.getDefaultState(), false);
+        builder.world().setBlock(upPos, Blocks.IRON_ORE.defaultBlockState(), false);
+        builder.world().showSection(upSelection, Direction.NORTH);
         builder.idle(10);
 
+        builder.world().falldownSection(anvilLink);
+        builder.world().replaceBlocks(upSelection, Blocks.AIR.defaultBlockState(), true);
+        builder.world().hideSection(upSelection, Direction.NORTH);
+        resultLink = builder.world().createItemEntity(upPos.getCenter(), Vec3.ZERO, Items.IRON_INGOT.getDefaultInstance().copyWithCount(3));
+        builder.world().riseSection(anvilLink);
+        builder.idle(10);
+
+        builder.overlay()
+            .showText(40)
+            .text("Transcendence Anvils can increase the count of blocks' drops, as same as Fortune enchantment")
+            .pointAt(upPos.getCenter())
+            .attachKeyFrame()
+            .placeNearTarget();
+        builder.idle(50);
+
+        builder.world().removeEntity(resultLink);
+
+        // 复位
+        builder.world().hideSection(downSelection, Direction.NORTH);
+        builder.world().setBlock(anvilPos, Blocks.ANVIL.defaultBlockState(), false);
+        builder.idle(20);
+
         // 方块压合
-        builder.world().setBlock(downPos, Blocks.ICE.defaultBlockState(), false);
+        builder.world().replaceBlocks(downSelection, Blocks.ICE.defaultBlockState(), false);
+        builder.world().showSection(downSelection, Direction.NORTH);
         builder.world().setBlock(upPos, Blocks.ICE.defaultBlockState(), false);
+        builder.world().showSection(upSelection, Direction.NORTH);
         builder.idle(20);
 
         builder.world().falldownSection(anvilLink);
-        builder.world().setBlock(upPos, Blocks.AIR.defaultBlockState(), false);
-        builder.world().setBlock(downPos, Blocks.PACKED_ICE.defaultBlockState(), true);
+        builder.world().replaceBlocks(upSelection, Blocks.AIR.defaultBlockState(), false);
+        builder.world().hideSection(upSelection, Direction.NORTH);
+        builder.world().replaceBlocks(downSelection, Blocks.PACKED_ICE.defaultBlockState(), true);
         builder.idle(3);
 
         builder.world().falldownSection(anvilLink);
@@ -191,18 +260,21 @@ public class BlockRecipeScene {
             .attachKeyFrame()
             .placeNearTarget();
         builder.idle(50);
+
         // 复位
         builder.world().riseSection(anvilLink, 2);
-        builder.world().setBlock(downPos, Blocks.AIR.defaultBlockState(), false);
-        builder.idle(10);
+        builder.world().hideSection(downSelection, Direction.NORTH);
+        builder.idle(20);
 
         // 方块涂抹
-        builder.world().setBlock(downPos, Blocks.COBBLESTONE.defaultBlockState(), false);
+        builder.world().replaceBlocks(downSelection, Blocks.COBBLESTONE.defaultBlockState(), false);
+        builder.world().showSection(downSelection, Direction.NORTH);
         builder.world().setBlock(upPos, Blocks.MOSS_BLOCK.defaultBlockState(), false);
+        builder.world().showSection(upSelection, Direction.NORTH);
         builder.idle(20);
 
         builder.world().falldownSection(anvilLink);
-        builder.world().setBlock(downPos, Blocks.MOSSY_COBBLESTONE.defaultBlockState(), false);
+        builder.world().replaceBlocks(downSelection, Blocks.MOSSY_COBBLESTONE.defaultBlockState(), false);
         builder.idle(10);
 
         builder.overlay().showText(40)
@@ -211,19 +283,23 @@ public class BlockRecipeScene {
             .attachKeyFrame()
             .placeNearTarget();
         builder.idle(50);
+
         // 复位
-        builder.world().setBlock(downPos, Blocks.AIR.defaultBlockState(), false);
+        builder.world().hideSection(downSelection, Direction.NORTH);
+        builder.world().hideSection(upSelection, Direction.NORTH);
         builder.world().riseSection(anvilLink);
-        builder.idle(10);
+        builder.idle(20);
 
         // 方块压榨
-        builder.world().setBlock(downPos, Blocks.CAULDRON.defaultBlockState(), false);
-        builder.world().setBlock(upPos, Blocks.SNOW_BLOCK.defaultBlockState(), false);
+        builder.world().replaceBlocks(downSelection, Blocks.CAULDRON.defaultBlockState(), false);
+        builder.world().showSection(downSelection, Direction.NORTH);
+        builder.world().replaceBlocks(upSelection, Blocks.SNOW_BLOCK.defaultBlockState(), false);
+        builder.world().showSection(upSelection, Direction.NORTH);
         builder.idle(20);
 
         builder.world().falldownSection(anvilLink);
-        builder.world().setBlock(upPos, Blocks.ICE.defaultBlockState(), false);
-        builder.world().setBlock(downPos, CauldronUtil.getStateFromContentAndLevel(Blocks.POWDER_SNOW_CAULDRON, 1), false);
+        builder.world().replaceBlocks(upSelection, Blocks.ICE.defaultBlockState(), false);
+        builder.world().replaceBlocks(downSelection, CauldronUtil.getStateFromContentAndLevel(Blocks.POWDER_SNOW_CAULDRON, 1), false);
         builder.idle(10);
 
         builder.overlay()
@@ -233,9 +309,8 @@ public class BlockRecipeScene {
             .attachKeyFrame()
             .placeNearTarget();
         builder.idle(50);
+
         // 复位
-        builder.world().setBlock(downPos, Blocks.AIR.defaultBlockState(), false);
-        builder.world().setBlock(upPos, Blocks.AIR.defaultBlockState(), false);
         builder.world().riseSection(anvilLink);
         builder.idle(10);
     }
@@ -264,7 +339,7 @@ public class BlockRecipeScene {
             builder.idle(10);
         }
 
-        // 随机生成很多猪
+        // 随机生成一些僵尸
         builder.world().falldownSection(anvilLink);
         List<ElementLink<EntityElement>> zombies = spawnZombies(builder, blockPos);
         builder.world().riseSection(anvilLink);
@@ -292,7 +367,6 @@ public class BlockRecipeScene {
         zombies.clear();
         builder.idle(10);
 
-        // 高度越高，成功概率越大
         builder.world().riseSection(anvilLink, 3);
         builder.idle(10);
 
@@ -310,6 +384,7 @@ public class BlockRecipeScene {
         for (ElementLink<EntityElement> zombie : zombies) {
             builder.world().removeEntity(zombie);
         }
+
         // 复位
         zombies.clear();
         builder.world().hideSection(util.select().position(blockPos), Direction.NORTH);

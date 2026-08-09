@@ -1,50 +1,114 @@
 package dev.anvilcraft.ponder.api.instruction;
 
 public interface Interpolation {
-    double instantaneous(int time);
+    double progress(double deltaTime);
 
     double duration(double journey);
 
     /**
-     * 创建一个线性插值器实例
+     * 创建一个匀速插值器
      *
-     * @param speed 线性运动的速度值
-     * @return 返回一个Interpolation接口的实现对象，用于处理线性插值计算
+     * @param speed 速度值（正数），单位：距离/时间
+     * @return 返回一个Interpolation接口的实现
      */
     static Interpolation linear(double speed) {
-        // 创建并返回一个匿名内部类实例，实现Interpolation接口
         return new Interpolation() {
             @Override
-            public double instantaneous(int time) {
-                // 对于线性插值，任意时刻的瞬时值都等于设定的速度值
-                return speed;
+            public double progress(double deltaTime) {
+                // 匀速运动：位移与时间成正比
+                return deltaTime;
             }
 
             @Override
             public double duration(double journey) {
-                // 计算完成指定路程所需的时间：时间 = 路程 / 速度
+                // t = s / v
                 return journey / speed;
             }
         };
     }
 
     /**
-     * 创建一个加速度插值器
+     * 创建一个缓入插值器（匀加速）
      *
-     * @param acceleration 加速度值，用于计算速度和时间
-     * @return 返回一个Interpolation接口的实现，用于处理加速度相关的插值计算
+     * @param acceleration 加速度值（正数），单位：距离/时间²
+     * @return 返回一个Interpolation接口的实现
      */
-    static Interpolation acceleration(double acceleration) {
+    static Interpolation easeIn(double acceleration) {
         return new Interpolation() {
             @Override
-            public double instantaneous(int time) {
-                // 根据加速度和时间计算瞬时速度：v = a * t
-                return acceleration * time;
+            public double progress(double deltaTime) {
+                // 匀加速运动位移比例：s(t)/S = f²
+                // 其中 f = t/T
+                return deltaTime * deltaTime;
             }
 
             @Override
             public double duration(double journey) {
+                // s = ½·a·T² => T = sqrt(2s/a)
                 return Math.sqrt(2 * journey / acceleration);
+            }
+        };
+    }
+
+    /**
+     * 创建一个重力下落插值器（无终端速度限制）
+     *
+     * @return 返回一个Interpolation接口的实现
+     */
+    static Interpolation gravity() {
+        return Interpolation.easeIn(0.08);  // 原版重力加速度 0.08 方块/tick²
+    }
+
+    /**
+     * 创建一个缓出插值器（匀减速）
+     *
+     * @param deceleration 减速度值（正数），单位：距离/时间²
+     * @return 返回一个Interpolation接口的实现
+     */
+    static Interpolation easeOut(double deceleration) {
+        return new Interpolation() {
+            @Override
+            public double progress(double deltaTime) {
+                // 匀减速运动位移比例：s(t)/S = 2f - f²
+                // 其中 f = t/T
+                return 2 * deltaTime - deltaTime * deltaTime;
+            }
+
+            @Override
+            public double duration(double journey) {
+                // 匀减速：s = ½·a·T² (初速度 v0 = a·T，末速度为0)
+                // T = sqrt(2s/a)
+                return Math.sqrt(2 * journey / deceleration);
+            }
+        };
+    }
+
+    /**
+     * 创建一个缓入缓出插值器
+     *
+     * @param acceleration 加速度值（正数），单位：距离/时间²
+     * @return 返回一个Interpolation接口的实现
+     */
+    static Interpolation easeInOut(double acceleration) {
+        return new Interpolation() {
+            @Override
+            public double progress(double fraction) {
+                // 分为两段：
+                // 前半段（f ∈ [0, 0.5]）：匀加速，位移比例 = 2f²
+                // 后半段（f ∈ [0.5, 1]）：匀减速，位移比例 = 1 - 2(1-f)²
+                if (fraction < 0.5) {
+                    return 2 * fraction * fraction;
+                } else {
+                    return 1 - 2 * (1 - fraction) * (1 - fraction);
+                }
+            }
+
+            @Override
+            public double duration(double journey) {
+                // 匀加速段位移 = 匀减速段位移 = journey/2
+                // 单段时间 T_half = sqrt(2 * (journey/2) / a) = sqrt(journey / a)
+                // 总时间 = 2 * T_half
+                return 2 * Math.sqrt(journey / acceleration);
             }
         };
     }

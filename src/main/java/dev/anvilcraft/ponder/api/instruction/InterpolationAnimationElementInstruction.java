@@ -57,10 +57,12 @@ public class InterpolationAnimationElementInstruction<T extends PonderSceneEleme
         if (this.element == null) {
             return;
         }
-        Vec3 delta = this.direction.scale(this.interpolation.instantaneous(this.totalTicks - this.remainingTicks));
-        Vec3 current = this.getter.apply(this.element);
-        Vec3 target = current.add(delta);
-        if (target.subtract(this.origin).lengthSqr() >= this.delta.lengthSqr()) {
+
+        double fraction = (double)(this.totalTicks - this.remainingTicks) / this.totalTicks;
+        double progress = this.interpolation.progress(fraction);
+        Vec3 target = this.origin.add(this.delta.scale(progress));
+
+        if (progress >= 1.0) {
             target = this.target;
         }
         this.setter.accept(this.element, target);

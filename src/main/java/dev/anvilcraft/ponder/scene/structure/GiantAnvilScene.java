@@ -3,14 +3,14 @@ package dev.anvilcraft.ponder.scene.structure;
 import dev.anvilcraft.lib.v2.registrum.util.entry.ItemProviderEntry;
 import dev.anvilcraft.lib.v2.registrum.util.entry.RegistryEntry;
 import dev.anvilcraft.ponder.AnvilCraftPonder;
+import dev.anvilcraft.ponder.AnvilCraftPonderTags;
+import dev.anvilcraft.ponder.api.AnvilCraftSceneBuilder;
+import dev.anvilcraft.ponder.api.instruction.Interpolation;
 import dev.dubhe.anvilcraft.block.GiantAnvilBlock;
 import dev.dubhe.anvilcraft.block.state.Color;
 import dev.dubhe.anvilcraft.block.state.Cube3x3PartHalf;
 import dev.dubhe.anvilcraft.block.state.GiantAnvilCube;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
-import dev.anvilcraft.ponder.AnvilCraftPonderTags;
-import dev.anvilcraft.ponder.api.AnvilCraftSceneBuilder;
-import dev.anvilcraft.ponder.api.instruction.Interpolation;
 import net.createmod.ponder.api.element.ElementLink;
 import net.createmod.ponder.api.element.EntityElement;
 import net.createmod.ponder.api.element.WorldSectionElement;
@@ -87,7 +87,7 @@ public class GiantAnvilScene {
         Selection giantAnvil = util.select().position(16, 12, 16);
         ElementLink<WorldSectionElement> giantAnvilLink = builder.world().showIndependentSection(giantAnvil, Direction.DOWN);
         // 巨型铁砧下落10m
-        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -10, 0), Interpolation.acceleration(0.05));
+        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -10, 0), Interpolation.easeIn(0.05));
         // 文本：就会产生撼地冲击向四周扩散
         builder.overlay()
             .showText(40)
@@ -153,7 +153,7 @@ public class GiantAnvilScene {
         // 延时20gt
         builder.idle(20);
         // 巨型铁砧下落3m
-        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -3, 0), Interpolation.acceleration(0.05));
+        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -3, 0), Interpolation.easeIn(0.05));
         // 延时30gt
         builder.idle(30);
         // 巨型铁砧上升16m 10gt
@@ -168,7 +168,7 @@ public class GiantAnvilScene {
         // 延时40gt
         builder.idle(40);
         // 巨型铁砧下降16m
-        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -16, 0), Interpolation.acceleration(0.05));
+        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -16, 0), Interpolation.easeIn(0.05));
         // XeKr冒烟红温倒地
         builder.world().letLivingEntityDie(mushroomCow, util.grid().at(17, 1, 10), false);
         // 延时10gt
@@ -258,11 +258,11 @@ public class GiantAnvilScene {
         // 延时20gt
         builder.idle(20);
         // 巨型铁砧下落10m
-        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -10, 0), Interpolation.acceleration(0.05));
+        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -10, 0), Interpolation.easeIn(0.05));
         // 铁砧上升1m
-        builder.world().moveSectionInterpolation(anvilLink, new Vec3(0, 1, 0), Interpolation.acceleration(0.05));
+        builder.world().moveSectionInterpolation(anvilLink, new Vec3(0, 1, 0), Interpolation.easeIn(0.05));
         // 铁砧下降1m
-        builder.world().moveSectionInterpolation(anvilLink, new Vec3(0, -1, 0), Interpolation.acceleration(0.05));
+        builder.world().moveSectionInterpolation(anvilLink, new Vec3(0, -1, 0), Interpolation.easeIn(0.05));
         // 延时40gt
         builder.idle(40);
         // 巨型铁砧上升10m
@@ -312,7 +312,7 @@ public class GiantAnvilScene {
         // 延时60gt
         builder.idle(60);
         // 巨型铁砧下落10m
-        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -10, 0), Interpolation.acceleration(0.05));
+        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -10, 0), Interpolation.easeIn(0.05));
         // XeKr着火冒烟红温倒地
         builder.world().letLivingEntityDie(mushroomCow, util.grid().at(17, 1, 12), true, entity -> {
             entity.setRemainingFireTicks(60);
@@ -422,7 +422,7 @@ public class GiantAnvilScene {
         // 延时30gt
         builder.idle(30);
         // 铁砧下落10m
-        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -10, 0), Interpolation.acceleration(0.05));
+        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -10, 0), Interpolation.easeIn(0.05));
         // 僵尸同时冒烟红温倒地
         builder.world().letLivingEntitysDie(
             new ElementLink[]{zombie1, zombie2, zombie3, zombie4, zombie5, zombie6, zombie7, zombie8},
@@ -600,7 +600,7 @@ public class GiantAnvilScene {
         builder.idle(40);
 
         // 大铁砧下落
-        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -10, 0), Interpolation.acceleration(0.05));
+        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -10, 0), Interpolation.easeIn(0.05));
 
         // 破坏石头生成圆石掉落物，破坏冰块，破坏金矿石生成粗金掉落物
         builder.world().hideIndependentSection(blockRowLinks[0], Direction.UP);
@@ -656,7 +656,7 @@ public class GiantAnvilScene {
         builder.idle(40);
 
         // 大铁砧下落
-        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -6, 0), Interpolation.acceleration(0.05));
+        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -6, 0), Interpolation.easeIn(0.05));
 
         // 破坏石头生成石头掉落物，破坏冰块生成冰块掉落物，破坏金矿石生成金矿石掉落物
         builder.world().hideIndependentSection(blockRowLinks[0], Direction.UP);
@@ -714,7 +714,7 @@ public class GiantAnvilScene {
         builder.idle(40);
 
         // 大铁砧下落
-        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -6, 0), Interpolation.acceleration(0.05));
+        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -6, 0), Interpolation.easeIn(0.05));
 
         // 破坏石头生成石头掉落物，破坏冰块，破坏金矿石生成金锭掉落物，不破坏基岩
         builder.world().hideIndependentSection(blockRowLinks[0], Direction.UP);
@@ -779,7 +779,7 @@ public class GiantAnvilScene {
         builder.idle(40);
 
         // 大铁砧下落
-        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -6, 0), Interpolation.acceleration(0.05));
+        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -6, 0), Interpolation.easeIn(0.05));
 
         // 破坏石头生成圆石掉落物，破坏冰块，破坏金矿石生成多个粗金掉落物，不破坏基岩
         builder.world().hideIndependentSection(blockRowLinks[0], Direction.UP);
@@ -835,7 +835,7 @@ public class GiantAnvilScene {
         builder.idle(40);
 
         // 大铁砧下落
-        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -6, 0), Interpolation.acceleration(0.05));
+        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -6, 0), Interpolation.easeIn(0.05));
 
         // 破坏石头生成圆石掉落物，破坏冰块，破坏金矿石生成粗金掉落物，不破坏基岩
         builder.world().hideIndependentSection(blockRowLinks[0], Direction.UP);
@@ -927,7 +927,7 @@ public class GiantAnvilScene {
         builder.idle(40);
 
         // 大铁砧下落
-        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -6, 0), Interpolation.acceleration(0.05));
+        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -6, 0), Interpolation.easeIn(0.05));
 
         // 破坏虞美人生成虞美人掉落物，破坏红蘑菇生成红蘑菇掉落物，破坏枯萎的灌木生成木棍掉落物，破坏成熟的小麦生成小麦掉落物
         for (int i = 0; i < plantBlockLinks.length; i++) {
@@ -1100,7 +1100,7 @@ public class GiantAnvilScene {
         builder.idle(40);
 
         // 大铁砧下落
-        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -6, 0), Interpolation.acceleration(0.05));
+        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -6, 0), Interpolation.easeIn(0.05));
 
         // 小麦(成熟) -> 小麦(刚种下)
         builder.world().setBlock(groundBlocks[0].above(), Blocks.WHEAT.defaultBlockState()
@@ -1284,7 +1284,7 @@ public class GiantAnvilScene {
         builder.idle(40);
 
         // 大铁砧下落
-        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -6, 0), Interpolation.acceleration(0.05));
+        builder.world().moveSectionInterpolation(giantAnvilLink, new Vec3(0, -6, 0), Interpolation.easeIn(0.05));
 
         // 破坏整棵树
         for (int i = 0; i < treeLogLinks.length; i++) {

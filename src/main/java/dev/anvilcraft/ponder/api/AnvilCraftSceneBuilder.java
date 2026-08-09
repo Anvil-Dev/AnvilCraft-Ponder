@@ -1,11 +1,11 @@
 package dev.anvilcraft.ponder.api;
 
-import dev.dubhe.anvilcraft.block.multipart.AbstractMultiPartBlock;
-import dev.dubhe.anvilcraft.block.state.ISimpleMultiPartBlockState;
-import dev.dubhe.anvilcraft.constant.Constant;
 import dev.anvilcraft.ponder.api.instruction.Interpolation;
 import dev.anvilcraft.ponder.api.instruction.InterpolationAnimateWorldSectionInstruction;
 import dev.anvilcraft.ponder.api.instruction.LineInstruction;
+import dev.dubhe.anvilcraft.block.multipart.AbstractMultiPartBlock;
+import dev.dubhe.anvilcraft.block.state.ISimpleMultiPartBlockState;
+import dev.dubhe.anvilcraft.constant.Constant;
 import net.createmod.ponder.api.element.ElementLink;
 import net.createmod.ponder.api.element.EntityElement;
 import net.createmod.ponder.api.element.WorldSectionElement;
@@ -103,7 +103,7 @@ public class AnvilCraftSceneBuilder extends PonderSceneBuilder {
         }
 
         public void falldownSection(ElementLink<WorldSectionElement> link, float height) {
-            this.moveSectionInterpolation(link, new Vec3(0, -height, 0), Interpolation.acceleration(0.08));
+            this.moveSectionInterpolation(link, new Vec3(0, -height, 0), Interpolation.gravity());
         }
 
         public void falldownSection(ElementLink<WorldSectionElement> link) {
@@ -111,7 +111,7 @@ public class AnvilCraftSceneBuilder extends PonderSceneBuilder {
         }
 
         public void riseSection(ElementLink<WorldSectionElement> link, float height) {
-            this.moveSectionInterpolation(link, new Vec3(0, height, 0), Interpolation.acceleration(0.05));
+            this.moveSectionInterpolation(link, new Vec3(0, height, 0), Interpolation.easeOut(0.1));
         }
 
         public void riseSection(ElementLink<WorldSectionElement> link) {
