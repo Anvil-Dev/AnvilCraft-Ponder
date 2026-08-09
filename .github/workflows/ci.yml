@@ -74,7 +74,7 @@ jobs:
           mod: build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
           extra-mods: |
             anvilcraft:1.21.1-1.6.0+snapshot.2127
-            create:mc1.21.1-6.0.10
+            create:6.0.10+mc1.21.1
 
       - name: publish neoforge mc mod
         uses: Kir-Antipov/mc-publish@v3.3
@@ -96,8 +96,8 @@ jobs:
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
 
           dependencies: |
-            create@mc1.21.1-6.0.10(required){modrinth:LNytGWDc}{curseforge:328085}
             anvilcraft:1.21.1-1.6.0+snapshot.2127(required){modrinth:vuISAWPc}{curseforge:986251}
+            create:6.0.10+mc1.21.1(required){modrinth:LNytGWDc}{curseforge:328085}
 
           files: |
             build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
