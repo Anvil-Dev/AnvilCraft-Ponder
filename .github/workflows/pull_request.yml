@@ -5,11 +5,11 @@ on:
     branches:
       - releases/**
     paths:
+      - .github/workflows/pull_request.yml
+      - gradle/scripts/**
       - src/**
-      - common/**
-      - fabric/**
-      - forge/**
       - build.gradle
+      - dependencies.gradle
       - gradle.properties
       - settings.gradle
 
@@ -62,4 +62,6 @@ jobs:
         uses: Anvil-Dev/dedicated-server-launch-test@1.21.1-neoforge
         with:
           mod: build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
-          extra-mods: create:mc1.21.1-6.0.8 anvilcraft:1.21.1-1.5.0+hotfix.1560
+          extra-mods: |
+            anvilcraft:1.21.1-1.6.0+snapshot.2127
+            create:mc1.21.1-6.0.10
