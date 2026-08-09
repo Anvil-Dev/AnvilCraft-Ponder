@@ -84,12 +84,12 @@ public class BlockRecipeScene {
         builder.idle(10);
 
         // 物品压入方块
-        builder.world().setBlock(downPos, Blocks.SHULKER_BOX.defaultBlockState(), false);
-        itemLink = builder.world().createItemEntity(upPos.getCenter(), Vec3.ZERO, Items.SHULKER_BOX.getDefaultInstance());
+        builder.world().setBlock(downPos, Blocks.BLACKSTONE.defaultBlockState(), false);
+        itemLink = builder.world().createItemEntity(upPos.getCenter(), Vec3.ZERO, Items.GOLD_INGOT.getDefaultInstance());
         builder.idle(20);
 
         builder.world().falldownSection(anvilLink);
-        builder.world().setBlock(downPos, ModBlocks.NESTING_SHULKER_BOX.getDefaultState(), true);
+        builder.world().setBlock(downPos, Blocks.GILDED_BLACKSTONE.defaultBlockState(), true);
         builder.world().removeEntity(itemLink);
         builder.world().riseSection(anvilLink);
         builder.idle(10);

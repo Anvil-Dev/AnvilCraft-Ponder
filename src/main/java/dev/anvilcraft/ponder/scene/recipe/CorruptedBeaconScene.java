@@ -1,7 +1,7 @@
 package dev.anvilcraft.ponder.scene.recipe;
 
-import com.tterrag.registrate.util.entry.ItemProviderEntry;
-import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.anvilcraft.lib.v2.registrum.util.entry.ItemProviderEntry;
+import dev.anvilcraft.lib.v2.registrum.util.entry.RegistryEntry;
 import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.dubhe.anvilcraft.block.CorruptedBeaconBlock;
 import dev.dubhe.anvilcraft.block.OilCauldronBlock;

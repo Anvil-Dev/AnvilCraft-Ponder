@@ -1,6 +1,6 @@
 package dev.anvilcraft.ponder.client;
 
-import com.tterrag.registrate.providers.ProviderType;
+import dev.anvilcraft.lib.v2.registrum.providers.ProviderType;
 import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.anvilcraft.ponder.AnvilCraftPonderScenes;
 import dev.anvilcraft.ponder.AnvilCraftPonderTags;
@@ -18,13 +18,13 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 
-import static dev.anvilcraft.ponder.AnvilCraftPonder.REGISTRATE;
+import static dev.anvilcraft.ponder.AnvilCraftPonder.REGISTRUM;
 
 @Mod(value = AnvilCraftPonder.MOD_ID, dist = Dist.CLIENT)
 public class AnvilCraftPonderClient implements PonderPlugin {
     public AnvilCraftPonderClient(IEventBus modBus, ModContainer container) {
         PonderIndex.addPlugin(this);
-        REGISTRATE.addDataGenerator(ProviderType.LANG, PonderLangHandler::init);
+        REGISTRUM.addDataGenerator(ProviderType.LANG, PonderLangHandler::init);
         ClientboundSimpleActionPacket.addAction(
             "openAnvilCraftPonder",
             () -> (value) -> ScreenOpener.transitionTo(new AddonPonderIndexScreen())

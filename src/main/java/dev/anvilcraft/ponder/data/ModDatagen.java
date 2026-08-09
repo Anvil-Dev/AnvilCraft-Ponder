@@ -1,15 +1,15 @@
 package dev.anvilcraft.ponder.data;
 
-import com.tterrag.registrate.providers.ProviderType;
+import dev.anvilcraft.lib.v2.registrum.providers.ProviderType;
 import dev.anvilcraft.ponder.AnvilCraftPonder;
 import dev.anvilcraft.ponder.data.lang.PonderLangHandler;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
-import static dev.anvilcraft.ponder.AnvilCraftPonder.REGISTRATE;
+import static dev.anvilcraft.ponder.AnvilCraftPonder.REGISTRUM;
 
-@EventBusSubscriber(modid = AnvilCraftPonder.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = AnvilCraftPonder.MOD_ID)
 public class ModDatagen {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {}
@@ -18,6 +18,6 @@ public class ModDatagen {
      * 初始化生成器
      */
     public static void init() {
-        REGISTRATE.addDataGenerator(ProviderType.LANG, PonderLangHandler::init);
+        REGISTRUM.addDataGenerator(ProviderType.LANG, PonderLangHandler::init);
     }
 }

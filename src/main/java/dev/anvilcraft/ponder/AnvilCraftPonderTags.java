@@ -1,6 +1,6 @@
 package dev.anvilcraft.ponder;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.anvilcraft.lib.v2.registrum.util.entry.RegistryEntry;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
 import net.minecraft.core.registries.BuiltInRegistries;

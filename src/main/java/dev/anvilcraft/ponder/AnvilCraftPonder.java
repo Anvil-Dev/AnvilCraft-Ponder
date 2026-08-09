@@ -1,7 +1,7 @@
 package dev.anvilcraft.ponder;
 
 import com.mojang.logging.LogUtils;
-import com.tterrag.registrate.Registrate;
+import dev.anvilcraft.lib.v2.registrum.Registrum;
 import dev.anvilcraft.ponder.data.ModDatagen;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 public class AnvilCraftPonder {
     public static final String MOD_ID = "anvilcraft_ponder";
     public static final Logger LOGGER = LogUtils.getLogger();
-    public static final Registrate REGISTRATE = Registrate.create(MOD_ID);
+    public static final Registrum REGISTRUM = Registrum.create(MOD_ID);
 
     public AnvilCraftPonder(IEventBus modEventBus, ModContainer modContainer) {
         ModDatagen.init();
